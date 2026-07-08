@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2>Add New Trek</h2>
+
+    <hr>
+
+    <form method="POST">
+
+        <label>Name</label>
+        <input
+            type="text"
+            name="name"
+            class="form-control mb-3"
+            required
+        >
+
+        <label>Location</label>
+        <input
+            type="text"
+            name="location"
+            class="form-control mb-3"
+            required
+        >
+
+        <label>Difficulty</label>
+        <select
+            name="difficulty"
+            class="form-control mb-3"
+        >
+            <option>Easy</option>
+            <option>Moderate</option>
+            <option>Hard</option>
+        </select>
+
+        <label>Duration (Days)</label>
+        <input
+            type="number"
+            name="duration"
+            class="form-control mb-3"
+            required
+        >
+
+        <label>Available Slots</label>
+        <input
+            type="number"
+            name="slots"
+            class="form-control mb-3"
+            required
+        >
+
+        <label>Start Date</label>
+        <input
+            type="date"
+            name="start_date"
+            class="form-control mb-3"
+            required
+        >
+
+        <label>End Date</label>
+        <input
+            type="date"
+            name="end_date"
+            class="form-control mb-3"
+            required
+        >
+
+        <button class="btn btn-success">
+            Add Trek
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

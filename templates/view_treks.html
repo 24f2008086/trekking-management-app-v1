@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2>All Treks</h2>
+
+    <table class="table table-bordered table-striped mt-3">
+
+        <thead class="table-dark">
+
+            <tr>
+
+                <th>Name</th>
+                <th>Location</th>
+                <th>Difficulty</th>
+                <th>Duration</th>
+                <th>Available Slots</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Action</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for trek in treks %}
+
+            <tr>
+
+                <td>{{ trek.name }}</td>
+                <td>{{ trek.location }}</td>
+                <td>{{ trek.difficulty }}</td>
+                <td>{{ trek.duration }}</td>
+                <td>{{ trek.available_slots }}</td>
+                <td>{{ trek.start_date }}</td>
+                <td>{{ trek.end_date }}</td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

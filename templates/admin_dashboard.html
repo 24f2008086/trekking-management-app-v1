@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2>Admin Dashboard</h2>
+
+    <hr>
+
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="card text-bg-primary mb-3">
+                <div class="card-body">
+                    <h5>Total Users</h5>
+                    <h2>{{ total_users }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card text-bg-success mb-3">
+                <div class="card-body">
+                    <h5>Total Staff</h5>
+                    <h2>{{ total_staff }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card text-bg-warning mb-3">
+                <div class="card-body">
+                    <h5>Total Treks</h5>
+                    <h2>{{ total_treks }}</h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <a href="/add-trek" class="btn btn-success">
+        Add Trek
+    </a>
+
+    <a href="/view-treks" class="btn btn-primary">
+        View Treks
+    </a>
+
+</div>
+
+{% endblock %}
