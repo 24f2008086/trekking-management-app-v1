@@ -2,51 +2,107 @@
 
 {% block content %}
 
-<div class="container mt-4">
+<h2>View Treks</h2>
 
-    <h2>All Treks</h2>
+<form method="GET" class="mb-4">
 
-    <table class="table table-bordered table-striped mt-3">
+    <div class="row">
 
-        <thead class="table-dark">
+        <div class="col-md-8">
+            <input type="text" name="search" class="form-control" placeholder="Search by Trek ID, Name or Location"
+                value="{{ search if search else '' }}">
+        </div>
 
-            <tr>
+        <div class="col-md-2">
+            <button class="btn btn-primary w-100">
+                Search
+            </button>
+        </div>
 
-                <th>Name</th>
-                <th>Location</th>
-                <th>Difficulty</th>
-                <th>Duration</th>
-                <th>Available Slots</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Action</th>
+        <div class="col-md-2">
+            <a href="{{ url_for('view_treks') }}" class="btn btn-secondary w-100">
+                Reset
+            </a>
+        </div>
 
-            </tr>
+    </div>
 
-        </thead>
+</form>
 
-        <tbody>
+<table class="table table-bordered">
 
-            {% for trek in treks %}
+    <thead class="table-dark">
 
-            <tr>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Difficulty</th>
+            <th>Duration</th>
+            <th>Slots</th>
+            <th>Status</th>
+            <th>Assigned Staff</th>
+            <th>Action</th>
+        </tr>
 
-                <td>{{ trek.name }}</td>
-                <td>{{ trek.location }}</td>
-                <td>{{ trek.difficulty }}</td>
-                <td>{{ trek.duration }}</td>
-                <td>{{ trek.available_slots }}</td>
-                <td>{{ trek.start_date }}</td>
-                <td>{{ trek.end_date }}</td>
+    </thead>
 
-            </tr>
+    <tbody>
 
-            {% endfor %}
+        {% for trek in treks %}
 
-        </tbody>
+        <tr>
 
-    </table>
+            <td>{{ trek.id }}</td>
+            <td>{{ trek.name }}</td>
+            <td>{{ trek.location }}</td>
+            <td>
 
-</div>
+                {% if trek.difficulty == "Easy" %}
+
+                <span class="badge bg-success">Easy</span>
+
+                {% elif trek.difficulty == "Moderate" %}
+
+                <span class="badge bg-warning text-dark">Moderate</span>
+
+                {% else %}
+
+                <span class="badge bg-danger">Hard</span>
+
+                {% endif %}
+
+            </td>
+            <td>{{ trek.duration }}</td>
+            <td>{{ trek.available_slots }}</td>
+            <td>
+                {% if trek.status == "Open" %}
+                <span class="badge bg-success">Open</span>
+                {% else %}
+                <span class="badge bg-danger">Closed</span>
+                {% endif %}
+            </td>
+
+            <td>
+                {% if trek.staff %}
+                {{ trek.staff.name }}
+                {% else %}
+                <span class="text-muted">Not Assigned</span>
+                {% endif %}
+            </td>
+
+            <td>
+                <a href="{{ url_for('edit_trek', trek_id=trek.id) }}" class="btn btn-warning btn-sm">Edit
+                </a>
+
+                <a href="{{ url_for('assign_staff', trek_id=trek.id) }}" class="btn btn-info btn-sm">Assign Staff
+                </a>
+            </td>
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+</table>
 
 {% endblock %}

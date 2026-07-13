@@ -2,49 +2,82 @@
 
 {% block content %}
 
-<div class="container mt-4">
+<div class="hero-banner"></div>
 
-    <h2>Admin Dashboard</h2>
+<div class="container mt-5">
 
-    <hr>
+    <h2 class="mb-1">
+        <i class="bi bi-speedometer2"></i>
+        Admin Dashboard
+    </h2>
 
-    <div class="row">
+    <p class="text-muted mb-4">
+        Manage users, staff, treks and bookings from one place.
+    </p>
 
-        <div class="col-md-4">
-            <div class="card text-bg-primary mb-3">
-                <div class="card-body">
-                    <h5>Total Users</h5>
-                    <h2>{{ total_users }}</h2>
+    <div class="row g-4">
+
+        <div class="col-md-3">
+            <div class="card shadow-sm border-1 h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-people-fill text-primary fs-1"></i>
+                    <h6 class="mt-3 text-muted">Total Users</h6>
+                    <h2 class="fw-bold text-primary">{{ total_users }}</h2>
+                    <a href="{{ url_for('manage_users') }}" class="btn btn-secondary w-100 p-1">
+                        <i class="bi bi-people"></i>
+                        Manage Users
+                    </a>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-4">
-            <div class="card text-bg-success mb-3">
-                <div class="card-body">
-                    <h5>Total Staff</h5>
-                    <h2>{{ total_staff }}</h2>
+        <div class="col-md-3">
+            <div class="card shadow-sm border-1 h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-person-badge-fill text-success fs-1"></i>
+                    <h6 class="mt-3 text-muted">Total Staff</h6>
+                    <h2 class="fw-bold text-success">{{ total_staff }}</h2>
+                    <a href="{{ url_for('manage_staff') }}" class="btn btn-warning w-100 p-1">
+                        <i class="bi bi-person-badge"></i>
+                        Manage Staff
+                    </a>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-4">
-            <div class="card text-bg-warning mb-3">
-                <div class="card-body">
-                    <h5>Total Treks</h5>
-                    <h2>{{ total_treks }}</h2>
+        <div class="col-md-3">
+            <div class="card shadow-sm border-1 h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-map-fill text-warning fs-1"></i>
+                    <h6 class="mt-3 text-muted">Total Treks</h6>
+                    <h2 class="fw-bold text-warning">{{ total_treks }}</h2>
+                    <a href="{{ url_for('view_treks') }}" class="btn btn-primary w-100 p-1">
+                        <i class="bi bi-map"></i>
+                        View Treks
+                    </a>
                 </div>
             </div>
         </div>
 
+        <div class="col-md-3">
+            <div class="card shadow-sm border-1 h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-journal-check text-danger fs-1"></i>
+                    <h6 class="mt-3 text-muted">Total Bookings</h6>
+                    <h2 class="fw-bold text-danger">{{ total_bookings }}</h2>
+                    <a href="{{ url_for('view_bookings') }}" class="btn btn-dark w-100 p-1">
+                        <i class="bi bi-journal-bookmark"></i>
+                        View Bookings
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <a href="/add-trek" class="btn btn-success">
+    <hr class="my-5">
+    <a href="{{ url_for('add_trek') }}" class="btn btn-success w-100 p-2">
+        <i class="bi bi-plus-circle"></i>
         Add Trek
-    </a>
-
-    <a href="/view-treks" class="btn btn-primary">
-        View Treks
     </a>
 
 </div>

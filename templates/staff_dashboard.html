@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mb-5">
+
+    <h2 class="mb-1">
+        👋 Welcome, {{ current_user.name }}
+    </h2>
+
+    <p class="text-muted mb-4">
+        Manage your assigned treks from one place.
+    </p>
+
+    <div class="row g-4 mb-4">
+
+        <div class="col-md-4">
+
+            <div class="card shadow border-0 text-center">
+
+                <div class="card-body">
+
+                    <h1>🥾</h1>
+
+                    <h5>Assigned Treks</h5>
+
+                    <h2>{{ treks|length }}</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card shadow border-0 text-center">
+
+                <div class="card-body">
+
+                    <h1>🟢</h1>
+
+                    <h5>Open Treks</h5>
+
+                    <h2>
+                        {{ treks|selectattr('status','equalto','Open')|list|length }}
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card shadow border-0 text-center">
+
+                <div class="card-body">
+
+                    <h1>✅</h1>
+
+                    <h5>Completed Treks</h5>
+
+                    <h2>
+                        {{ treks|selectattr('status','equalto','Completed')|list|length }}
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <h4 class="mb-3">
+        Your Assigned Treks
+    </h4>
+
+    {% if treks %}
+
+    <table class="table table-bordered table-hover align-middle">
+
+        <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Difficulty</th>
+            <th>Duration</th>
+            <th>Slots</th>
+            <th>Status</th>
+            <th class="text-center">Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        {% for trek in treks %}
+
+        <tr>
+
+            <td>{{ trek.id }}</td>
+
+            <td>{{ trek.name }}</td>
+
+            <td>{{ trek.location }}</td>
+
+            <td>
+                {% if trek.difficulty=="Easy" %}
+                    <span class="badge bg-success">Easy</span>
+
+                {% elif trek.difficulty=="Moderate" %}
+                    <span class="badge bg-warning text-dark">Moderate</span>
+
+                {% else %}
+                    <span class="badge bg-danger">Hard</span>
+
+                {% endif %}
+            </td>
+
+            <td>{{ trek.duration }} Days</td>
+
+            <td>{{ trek.available_slots }}</td>
+
+            <td>
+
+                {% if trek.status=="Open" %}
+                    <span class="badge bg-success">Open</span>
+
+                {% elif trek.status=="Started" %}
+                    <span class="badge bg-warning text-dark">Started</span>
+
+                {% elif trek.status=="Completed" %}
+                    <span class="badge bg-primary">Completed</span>
+
+                {% else %}
+                    <span class="badge bg-secondary">{{ trek.status }}</span>
+
+                {% endif %}
+
+            </td>
+
+            <td class="text-center">
+
+                <a href="{{ url_for('manage_trek', trek_id=trek.id) }}"
+                class="btn btn-primary btn-sm">
+                    Manage
+                </a>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    {% else %}
+
+    <div class="alert alert-warning">
+
+        No trek assigned yet.
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Hero Banner -->
+<div class="hero-banner rounded-4 shadow"></div>
+
+<!-- Hero Content -->
+<section class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8 text-center">
+
+            <span class="badge bg-success px-3 py-2 mb-3 fs-6">
+                🌿 Adventure Starts Here
+            </span>
+
+            <h1 class="display-2 fw-bold mb-3">
+                TrekQuest
+            </h1>
+
+            <p class="lead text-secondary fs-4 mb-4">
+                Discover breathtaking trails, book unforgettable trekking experiences,
+                and manage every adventure effortlessly—all from one place.
+            </p>
+
+            <p class="text-muted mb-5">
+                Whether you're an explorer searching for your next mountain,
+                a guide organizing expeditions, or an administrator managing
+                trekking events, TrekQuest makes every journey seamless.
+            </p>
+
+            <a href="{{ url_for('login') }}"
+               class="btn btn-success btn-lg px-5 py-3 shadow">
+                <i class="bi bi-compass-fill"></i>
+                Get Started
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Features -->
+<section class="container pb-5">
+
+    <div class="row g-4">
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow border-0">
+                <div class="card-body text-center p-4">
+
+                    <i class="bi bi-map display-4 text-success"></i>
+
+                    <h4 class="mt-3">
+                        Explore Trails
+                    </h4>
+
+                    <p class="text-muted">
+                        Discover amazing trekking destinations and choose your next adventure.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow border-0">
+                <div class="card-body text-center p-4">
+
+                    <i class="bi bi-calendar-check display-4 text-primary"></i>
+
+                    <h4 class="mt-3">
+                        Easy Booking
+                    </h4>
+
+                    <p class="text-muted">
+                        Reserve trekking slots in just a few clicks with a smooth booking experience.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow border-0">
+                <div class="card-body text-center p-4">
+
+                    <i class="bi bi-people-fill display-4 text-warning"></i>
+
+                    <h4 class="mt-3">
+                        Trek Together
+                    </h4>
+
+                    <p class="text-muted">
+                        Connect with experienced guides and fellow adventurers on every journey.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Quote -->
+<section class="container pb-5">
+
+    <div class="text-center">
+
+        <h2 class="fw-light fst-italic">
+            "The mountains are calling, and you must go."
+        </h2>
+
+        <p class="text-muted mt-3">
+            Start your next adventure with TrekQuest.
+        </p>
+
+    </div>
+
+</section>
+
+{% endblock %}

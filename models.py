@@ -88,6 +88,10 @@ class Trek(db.Model):
         db.Integer,
         db.ForeignKey("users.id")
     )
+    staff = db.relationship(
+    "User",
+    foreign_keys=[staff_id]
+    )
 
 class Booking(db.Model):
 
@@ -115,5 +119,14 @@ class Booking(db.Model):
     status = db.Column(
         db.String(50),
         default="Booked"
+    )
+    user = db.relationship(
+    "User",
+    foreign_keys=[user_id]
+    )
+
+    trek = db.relationship(
+    "Trek",
+    foreign_keys=[trek_id]
     )
 

@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mb-5">
+
+    <h2 class="mb-1">
+        📖 My Bookings
+    </h2>
+
+    <p class="text-muted mb-4">
+        View your booked trekking adventures.
+    </p>
+
+    {% if bookings %}
+
+    <div class="card shadow-sm border-0">
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-hover table-bordered align-middle">
+
+                    <thead class="table-dark">
+
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>User</th>
+                            <th>Trek Name</th>
+                            <th>Location</th>
+                            <th>Assigned Staff</th>
+                            <th>Status</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                    {% for booking in bookings %}
+
+                    <tr>
+
+                        <td>{{ booking.id }}</td>
+
+                        <td>{{ booking.user.name }}</td>
+
+                        <td>{{ booking.trek.name }}</td>
+
+                        <td>{{ booking.trek.location }}</td>
+
+                        <td>
+
+                            {% if booking.trek.staff %}
+
+                                {{ booking.trek.staff.name }}
+
+                            {% else %}
+
+                                <span class="text-muted">
+
+                                    Not Assigned
+
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+
+                            {% if booking.status=="Booked" %}
+
+                                <span class="badge bg-success">
+
+                                    Booked
+
+                                </span>
+
+                            {% elif booking.status=="Cancelled" %}
+
+                                <span class="badge bg-danger">
+
+                                    Cancelled
+
+                                </span>
+
+                            {% elif booking.status=="Completed" %}
+
+                                <span class="badge bg-primary">
+
+                                    Completed
+
+                                </span>
+
+                            {% else %}
+
+                                <span class="badge bg-secondary">
+
+                                    {{ booking.status }}
+
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% else %}
+
+    <div class="card shadow-sm border-0">
+
+        <div class="card-body text-center p-5">
+
+            <h3>🥾</h3>
+
+            <h4>No Bookings Yet</h4>
+
+            <p class="text-muted">
+
+                Book a trek to start your adventure.
+
+            </p>
+
+            <a href="{{ url_for('available_treks') }}"
+               class="btn btn-primary">
+
+                Explore Treks
+
+            </a>
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mb-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-6">
+
+            <div class="card shadow-sm border-0">
+
+                <div class="card-header bg-info text-white">
+
+                    <h3 class="mb-0">
+
+                        <i class="bi bi-person-check"></i>
+
+                        Assign Staff
+
+                    </h3>
+
+                </div>
+
+                <div class="card-body">
+
+                    <p class="text-muted">
+
+                        Select an approved staff member for this trek.
+
+                    </p>
+
+                    <form method="POST">
+
+                        <div class="mb-4">
+
+                            <label class="form-label">
+
+                                Staff Member
+
+                            </label>
+
+                            <select
+                                name="staff"
+                                class="form-select"
+                                required>
+
+                                {% for staff in staffs %}
+
+                                <option value="{{ staff.id }}">
+
+                                    {{ staff.name }}
+
+                                </option>
+
+                                {% endfor %}
+
+                            </select>
+
+                        </div>
+
+                        <div class="d-grid">
+
+                            <button
+                                class="btn btn-info btn-lg text-white">
+
+                                <i class="bi bi-person-check-fill"></i>
+
+                                Assign Staff
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
